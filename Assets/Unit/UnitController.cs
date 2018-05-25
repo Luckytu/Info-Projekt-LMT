@@ -13,6 +13,7 @@ public class UnitController : MonoBehaviour
     private int experiencePoints;
     private int healthPoints;
     public int actionPoints;
+    public int maxActionPoints;
     private int cardPoints;
     public float maxHeight;
 
@@ -42,6 +43,11 @@ public class UnitController : MonoBehaviour
     {
 		
 	}
+
+    public void resetActionPoints()
+    {
+        actionPoints = maxActionPoints;
+    }
 
     public void updateActionPoints(int actionPoints)
     {

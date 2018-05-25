@@ -11,6 +11,8 @@ public class TurnManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        teamsAlive = new bool[1];
+
 		for(int i = 0; i < teamsAlive.Length; i++)
         {
             teamsAlive[i] = true;
@@ -24,10 +26,22 @@ public class TurnManager : MonoBehaviour
 
     public void startNextTurn()
     {
-
+        for(int i = 0; i < units.Count; i++)
+        {
+            units[i].resetActionPoints();
+        }
     }
 
-    public void addUnit(UnitController unit) { units.Add(unit); } 
+    public void addUnit(UnitController unit)
+    {
+        if(units == null)
+        {
+            units = new List<UnitController>();
+        }
+
+        units.Add(unit);
+    } 
+
     public void killUnit(int unitID)
     {
         for(int i = 0; i < units.Count; i++)
@@ -35,13 +49,41 @@ public class TurnManager : MonoBehaviour
             if(units[i].getUnitID() == i)
             {
                 units.RemoveAt(i);
-                checkIfTeamIsDead(i);
+                checkIfTeamIsDead(units[i].getTeam());
             }
         }
     }
 
     private void checkIfTeamIsDead(int teamID)
     {
+        bool IsTeamDead = true;
 
+        for(int i = 0; i < units.Count; i++)
+        {
+            if(units[i].getTeam() == teamID)
+            {
+                IsTeamDead = false;
+            }
+        }
+
+        if(IsTeamDead)
+        {
+            teamCount--;
+            if(teamCount <= 0)
+            {
+                checkWinner();
+            }
+        }
+    }
+
+    private void checkWinner()
+    {
+        for(int i = 0; i < teamsAlive.Length; i++)
+        {
+            if(teamsAlive[i] == true)
+            {
+                print("Player " + i + " wins");
+            }
+        }
     }
 }
