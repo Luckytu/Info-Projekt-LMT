@@ -5,6 +5,7 @@ using UnityEngine;
 public class UnitController : MonoBehaviour
 {
     public Card[] cards;
+    public int activeCardCount;
 
     public int team;
     private int unitID;
@@ -23,17 +24,18 @@ public class UnitController : MonoBehaviour
         cards = new Card[6];
 
         gameObject.AddComponent<Armour>();
-        gameObject.AddComponent<Gun>();
-
-        cards = gameObject.GetComponents<Card>();
+        cards[0] = gameObject.AddComponent<Gun>();
 
         for (int i = 0; i < cards.Length; i++)
         {
-            cards[i].setUnit(this);
-
-            if (cards[i].isPassive())
+            if(cards[i] != null)
             {
-                cards[i].passiveBehaviour();
+                cards[i].setUnit(this);
+
+                if (cards[i].isPassive())
+                {
+                    cards[i].passiveBehaviour();
+                }
             }
         }
     }

@@ -38,42 +38,43 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && !markedUnit.isStillMoving())
         {
+            unitSelected = false;
             StartCoroutine(markedUnit.moveUnit());
         }
         
-        if(unitSelected)
+        if (unitSelected)
         {
-            if(Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha1) && markedUnit.GetComponent<UnitController>().activeCardCount >= 1)
             {
                 cardSelected = true;
                 //unitcontroller soll karte 1 einsetzen
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetKeyDown(KeyCode.Alpha2) && markedUnit.GetComponent<UnitController>().activeCardCount >= 2)
             {
                 cardSelected = true;
                 //unitcontroller soll karte 2 einsetzen
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha3))
+            if (Input.GetKeyDown(KeyCode.Alpha3) && markedUnit.GetComponent<UnitController>().activeCardCount >= 3)
             {
                 cardSelected = true;
                 //unitcontroller soll karte 3 einsetzen
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha4))
+            if (Input.GetKeyDown(KeyCode.Alpha4) && markedUnit.GetComponent<UnitController>().activeCardCount >= 4)
             {
                 cardSelected = true;
                 //unitcontroller soll karte 4 einsetzen
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha5))
+            if (Input.GetKeyDown(KeyCode.Alpha5) && markedUnit.GetComponent<UnitController>().activeCardCount >= 5)
             {
                 cardSelected = true;
                 //unitcontroller soll karte 5 einsetzen
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha6))
+            if (Input.GetKeyDown(KeyCode.Alpha6) && markedUnit.GetComponent<UnitController>().activeCardCount >= 6)
             {
                 cardSelected = true;
                 //unitcontroller soll karte 6 einsetzen
@@ -87,12 +88,17 @@ public class InputManager : MonoBehaviour
     public void markUnit(UnitMovement markedUnit) { this.markedUnit = markedUnit; }
     public UnitMovement getMarkedUnit() { return markedUnit; }
 
+    public void setTargetUnit(UnitMovement targetUnit) { this.targetUnit = targetUnit; }
+    public UnitMovement getTargetUnit() { return targetUnit; }
+
     public void setUnitSelected(bool unitSelected) { this.unitSelected = unitSelected; }
+    public void setCardSelected(bool cardSelected) { this.cardSelected = cardSelected; }
     public void setPathResetable(bool pathResetable) { this.pathResetable = pathResetable; }
     public void setPathSelected(bool pathSelected) { this.pathSelected = pathSelected; }
     public void setFirstTileSelected(bool firstTileSelected) { this.firstTileSelected = firstTileSelected; }
 
     public bool isUnitSelected() { return unitSelected; }
+    public bool isCardSelected() { return cardSelected; }
     public bool isPathResetable() { return pathResetable; }
     public bool isPathSelected() { return pathSelected; }
     public bool isFirstTileSelected() { return firstTileSelected; }

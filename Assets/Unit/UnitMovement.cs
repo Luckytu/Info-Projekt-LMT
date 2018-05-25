@@ -79,9 +79,16 @@ public class UnitMovement : MonoBehaviour
 
     public void markThisUnit()
     {
-        pathFinder.resetPath();
-        inputManager.setUnitSelected(true);
-        inputManager.markUnit(this);
+        if(!inputManager.isCardSelected())
+        {
+            pathFinder.resetPath();
+            inputManager.setUnitSelected(true);
+            inputManager.markUnit(this);
+        }
+        else
+        {
+            inputManager.setTargetUnit(this);
+        }
     }
 
     public IEnumerator moveUnit()
