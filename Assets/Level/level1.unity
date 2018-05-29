@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 8
+  serializedVersion: 9
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -38,7 +38,8 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -54,11 +55,10 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 9
+    serializedVersion: 10
     m_Resolution: 2
     m_BakeResolution: 40
-    m_TextureWidth: 1024
-    m_TextureHeight: 1024
+    m_AtlasSize: 1024
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 129827718}
   - component: {fileID: 129827719}
   - component: {fileID: 129827720}
+  - component: {fileID: 129827721}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -178,13 +179,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a721cecdbc33bbb47882d21549fcd82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnManager: {fileID: 0}
   originalTile: {fileID: 1033190841131970, guid: 9588c3e43c538414786f9e9a0e1e9182,
     type: 2}
   originalUnit: {fileID: 1738113017595092, guid: 97153adda7526cc45bfe7e6e2e7229bf,
     type: 2}
-  units: 7
-  maxX: 50
-  maxY: 50
+  maxX: 10
+  maxY: 10
 --- !u!114 &129827720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +195,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4efe8c66b35e3ec4d8efeae00f8bf0a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &129827721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 129827715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ce997213eee3346b3e47b33bf28ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &741426192
