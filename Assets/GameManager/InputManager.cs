@@ -7,7 +7,7 @@ public class InputManager : MonoBehaviour
     private PathFinder pathFinder;
     
     private TileSelect targetTile;
-    private UnitMovement markedUnit;
+    public UnitMovement markedUnit;
     private UnitMovement targetUnit;
 
     private bool unitSelected = false;
@@ -47,7 +47,7 @@ public class InputManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1) && markedUnit.GetComponent<UnitController>().activeCardCount >= 1)
             {
                 cardSelected = true;
-                //unitcontroller soll karte 1 einsetzen
+                //markedUnit.GetComponent<UnitController>().
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2) && markedUnit.GetComponent<UnitController>().activeCardCount >= 2)

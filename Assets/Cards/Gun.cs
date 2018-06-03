@@ -17,10 +17,15 @@ public class Gun : Card
         //inputManager = GameObject.Find("GameManger").GetComponent<InputManager>();
     }
 
+    private void Update()
+    {
+        
+    }
+
     public override void activeBehaviour()
     {
         Vector3 origin = unit.GetComponentInChildren<BoxCollider>().transform.position;
-        Vector3 hit;
+        Vector3 hit = inputManager.getTargetUnit().transform.position;
     }
 
     public override void passiveBehaviour()

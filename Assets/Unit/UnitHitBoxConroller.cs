@@ -33,4 +33,14 @@ public class UnitHitBoxConroller : MonoBehaviour {
         unitMovement.markThisUnit();
         unitMovement.findPath();
     }
+
+    private void OnMouseEnter()
+    {
+        unitMovement.markThisUnitAsTarget();
+    }
+
+    private void OnMouseExit()
+    {
+        unitMovement.unMarkThisUnitAsTarget();
+    }
 }

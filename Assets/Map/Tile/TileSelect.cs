@@ -12,7 +12,7 @@ public class TileSelect : TileBase {
     public GameObject lightPathSource;
     public float lightDistance;
 
-    private bool tileOccupied;
+    public bool tileOccupied;
 
     // Use this for initialization
     void Start ()
@@ -73,6 +73,7 @@ public class TileSelect : TileBase {
 
         if(tilePathFinder.getPreviousTile() != null && !tileOccupied)
         {
+            print("tileadded");
             markTileOnPath();
             addTileToPath();
         }

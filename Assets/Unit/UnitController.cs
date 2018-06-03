@@ -6,6 +6,7 @@ public class UnitController : MonoBehaviour
 {
     public Card[] cards;
     public int activeCardCount;
+    public int maxCard = 6;
 
     public int team;
     private int unitID;
@@ -21,7 +22,7 @@ public class UnitController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        cards = new Card[6];
+        cards = new Card[maxCard];
 
         gameObject.AddComponent<Armour>();
         cards[0] = gameObject.AddComponent<Gun>();
@@ -45,6 +46,11 @@ public class UnitController : MonoBehaviour
     {
 		
 	}
+
+    public void useCard(int card)
+    {
+
+    }
 
     public void resetActionPoints()
     {

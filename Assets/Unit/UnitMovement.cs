@@ -38,9 +38,8 @@ public class UnitMovement : MonoBehaviour
 
         currentTile.setTileOccupied(true);
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    void Update()
     {
         transform.rotation = GameObject.Find("Main Camera").transform.rotation;
     }
@@ -85,9 +84,21 @@ public class UnitMovement : MonoBehaviour
             inputManager.setUnitSelected(true);
             inputManager.markUnit(this);
         }
-        else
+    }
+
+    public void markThisUnitAsTarget()
+    {
+        if (inputManager.isCardSelected())
         {
             inputManager.setTargetUnit(this);
+        }
+    }
+
+    public void unMarkThisUnitAsTarget()
+    {
+        if (inputManager.isCardSelected())
+        {
+            inputManager.setTargetUnit(null);
         }
     }
 
@@ -95,6 +106,7 @@ public class UnitMovement : MonoBehaviour
     {
         stillMoving = true;
         Stack <TileSelect> path = new Stack <TileSelect> (pathFinder.getPath().Reverse());
+        print(path.Count);
 
         pathFinder.resetPath();
 

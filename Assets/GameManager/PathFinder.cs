@@ -6,9 +6,9 @@ using System.Linq;
 
 public class PathFinder : GameManagerBase
 {
-    private List<TilePathFinder> priorityList;
-    private List<TileSelect> pathList;
-    private Stack<TileSelect> pathStack;
+    public List<TilePathFinder> priorityList;
+    public List<TileSelect> pathList;
+    public Stack<TileSelect> pathStack;
 
     private InputManager inputManager;
 
