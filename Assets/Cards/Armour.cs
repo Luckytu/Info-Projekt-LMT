@@ -21,4 +21,9 @@ public class Armour : Card {
     {
         unit.addHealthPoints(healthPointsToAdd);
     }
+
+    public override void startActiveBehaviour()
+    {
+        throw new System.NotImplementedException();
+    }
 }

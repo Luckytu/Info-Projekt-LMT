@@ -7,13 +7,14 @@ public abstract class Card : MonoBehaviour
     protected UnitController unit;
 
     protected int actionPointCost;
-    protected int cardCost;
-    protected int coolDown;
 
     protected bool active;
     protected bool passive;
+    
+    protected bool activeBehaviourActivated = false;
 
     public abstract void activeBehaviour();
+    public abstract void startActiveBehaviour();
     public abstract void passiveBehaviour();
 
     public void setUnit(UnitController unit)
@@ -21,6 +22,7 @@ public abstract class Card : MonoBehaviour
         this.unit = unit;
     }
 
+    public bool isActiveBehaviourActivated() { return activeBehaviourActivated; }
     public bool isPassive() { return passive; }
     public bool isActive() { return active; }
 }

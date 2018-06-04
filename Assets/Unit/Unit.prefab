@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114524340333961974}
   - component: {fileID: 114415967826048984}
   m_Layer: 0
-  m_Name: Unit 1
+  m_Name: Unit
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,7 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddf8b1c199a4f6428a53a947c193f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToMove: 0
+  targetIndicatorLightSource: {fileID: 0}
+  timeToMove: 2
   currentTile: {fileID: 0}
   nextTile: {fileID: 0}
   targetTile: {fileID: 0}

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class UnitController : MonoBehaviour
 {
+    private TurnManager turnManager;
+
     public Card[] cards;
-    public int activeCardCount;
+    public int activeCardCount = 2;
     public int maxCard = 6;
 
     public int team;
@@ -13,7 +15,7 @@ public class UnitController : MonoBehaviour
 
     private int level;
     private int experiencePoints;
-    private int healthPoints;
+    public int healthPoints;
     public int actionPoints;
     public int maxActionPoints;
     private int cardPoints;
@@ -22,6 +24,10 @@ public class UnitController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        turnManager = GameObject.Find("GameManager").GetComponent<TurnManager>();
+
+        activeCardCount = 2;
+
         cards = new Card[maxCard];
 
         gameObject.AddComponent<Armour>();
@@ -49,7 +55,40 @@ public class UnitController : MonoBehaviour
 
     public void useCard(int card)
     {
+        if(findActiveCardID(card) != -1)
+        {
+            cards[findActiveCardID(card)].startActiveBehaviour();
+        }
+    }
 
+    private int findActiveCardID(int card)
+    {
+        for(int i = card; i <= cards.Length; i++)
+        {
+            if(cards[i] != null)
+            {
+                if(cards[i].isActive())
+                {
+                    return i;
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    public void deActivateAllCards()
+    {
+        for(int i = 0; i < cards.Length; i++)
+        {
+            if(cards[i] != null)
+            {
+                if(cards[i].isActiveBehaviourActivated())
+                {
+                    cards[i].startActiveBehaviour();
+                }
+            }
+        }
     }
 
     public void resetActionPoints()
@@ -68,7 +107,8 @@ public class UnitController : MonoBehaviour
 
         if(this.healthPoints <= 0)
         {
-
+            turnManager.killUnit(unitID);
+            Destroy(this.gameObject);
         }
     }
 
@@ -82,4 +122,6 @@ public class UnitController : MonoBehaviour
 
     public int getActionPoints() { return actionPoints; }
     public float getMaxHeight() { return maxHeight; }
+
+    public int getActiveCardCount() { return activeCardCount; }
 }

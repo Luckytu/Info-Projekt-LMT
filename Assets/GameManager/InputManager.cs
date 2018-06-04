@@ -8,10 +8,10 @@ public class InputManager : MonoBehaviour
     
     private TileSelect targetTile;
     public UnitMovement markedUnit;
-    private UnitMovement targetUnit;
+    public UnitMovement targetUnit;
 
-    private bool unitSelected = false;
-    private bool cardSelected = false;
+    public bool unitSelected = false;
+    public bool cardSelected = false;
     private bool pathResetable = false;
     private bool pathSelected = false;
     private bool firstTileSelected = false;
@@ -29,6 +29,10 @@ public class InputManager : MonoBehaviour
         {
             pathFinder.resetPath();
             unitSelected = false;
+            cardSelected = false;
+            markedUnit.GetComponent<UnitController>().deActivateAllCards();
+            targetUnit = null;
+            markedUnit = null;
         }
 
         if (pathSelected)
@@ -36,48 +40,55 @@ public class InputManager : MonoBehaviour
             pathResetable = true;
         }
 
-        if (Input.GetMouseButtonDown(1) && !markedUnit.isStillMoving())
+        if (Input.GetMouseButtonDown(1) && !markedUnit.isStillMoving() && targetUnit == null && !cardSelected)
         {
             unitSelected = false;
             StartCoroutine(markedUnit.moveUnit());
+            markedUnit = null;
         }
         
         if (unitSelected)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1) && markedUnit.GetComponent<UnitController>().activeCardCount >= 1)
+            if (Input.GetKeyDown(KeyCode.Alpha1) && markedUnit.GetComponent<UnitController>().getActiveCardCount() >= 1)
             {
                 cardSelected = true;
-                //markedUnit.GetComponent<UnitController>().
+                markedUnit.GetComponent<UnitController>().deActivateAllCards();
+                markedUnit.GetComponent<UnitController>().useCard(0);
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha2) && markedUnit.GetComponent<UnitController>().activeCardCount >= 2)
+            if (Input.GetKeyDown(KeyCode.Alpha2) && markedUnit.GetComponent<UnitController>().getActiveCardCount() >= 2)
             {
                 cardSelected = true;
-                //unitcontroller soll karte 2 einsetzen
+                markedUnit.GetComponent<UnitController>().deActivateAllCards();
+                markedUnit.GetComponent<UnitController>().useCard(1);
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha3) && markedUnit.GetComponent<UnitController>().activeCardCount >= 3)
+            if (Input.GetKeyDown(KeyCode.Alpha3) && markedUnit.GetComponent<UnitController>().getActiveCardCount() >= 3)
             {
                 cardSelected = true;
-                //unitcontroller soll karte 3 einsetzen
+                markedUnit.GetComponent<UnitController>().deActivateAllCards();
+                markedUnit.GetComponent<UnitController>().useCard(2);
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha4) && markedUnit.GetComponent<UnitController>().activeCardCount >= 4)
+            if (Input.GetKeyDown(KeyCode.Alpha4) && markedUnit.GetComponent<UnitController>().getActiveCardCount() >= 4)
             {
                 cardSelected = true;
-                //unitcontroller soll karte 4 einsetzen
+                markedUnit.GetComponent<UnitController>().deActivateAllCards();
+                markedUnit.GetComponent<UnitController>().useCard(3);
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha5) && markedUnit.GetComponent<UnitController>().activeCardCount >= 5)
+            if (Input.GetKeyDown(KeyCode.Alpha5) && markedUnit.GetComponent<UnitController>().getActiveCardCount() >= 5)
             {
                 cardSelected = true;
-                //unitcontroller soll karte 5 einsetzen
+                markedUnit.GetComponent<UnitController>().deActivateAllCards();
+                markedUnit.GetComponent<UnitController>().useCard(4);
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha6) && markedUnit.GetComponent<UnitController>().activeCardCount >= 6)
+            if (Input.GetKeyDown(KeyCode.Alpha6) && markedUnit.GetComponent<UnitController>().getActiveCardCount() >= 6)
             {
                 cardSelected = true;
-                //unitcontroller soll karte 6 einsetzen
+                markedUnit.GetComponent<UnitController>().deActivateAllCards();
+                markedUnit.GetComponent<UnitController>().useCard(5);
             }
         }
     }
@@ -85,7 +96,7 @@ public class InputManager : MonoBehaviour
     public void setTargetTile(TileSelect targetTile) { this.targetTile = targetTile; }
     public TileSelect getTargetTile() { return targetTile; }
 
-    public void markUnit(UnitMovement markedUnit) { this.markedUnit = markedUnit; }
+    public void setMarkedUnit(UnitMovement markedUnit) { this.markedUnit = markedUnit; }
     public UnitMovement getMarkedUnit() { return markedUnit; }
 
     public void setTargetUnit(UnitMovement targetUnit) { this.targetUnit = targetUnit; }

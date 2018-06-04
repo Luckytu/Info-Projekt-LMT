@@ -6,6 +6,9 @@ using System.Linq;
 
 public class UnitMovement : MonoBehaviour
 {
+    public GameObject targetIndicatorLightSource;
+    private GameObject targetIndicatorLight;
+
     public float timeToMove;
     private bool stillMoving;
 
@@ -82,7 +85,7 @@ public class UnitMovement : MonoBehaviour
         {
             pathFinder.resetPath();
             inputManager.setUnitSelected(true);
-            inputManager.markUnit(this);
+            inputManager.setMarkedUnit(this);
         }
     }
 
@@ -91,6 +94,8 @@ public class UnitMovement : MonoBehaviour
         if (inputManager.isCardSelected())
         {
             inputManager.setTargetUnit(this);
+
+            targetIndicatorLight = GameObject.Instantiate(targetIndicatorLightSource, transform.position + new Vector3(0, 0.1f, 0), new Quaternion());
         }
     }
 
@@ -99,6 +104,8 @@ public class UnitMovement : MonoBehaviour
         if (inputManager.isCardSelected())
         {
             inputManager.setTargetUnit(null);
+
+            GameObject.Destroy(targetIndicatorLight);
         }
     }
 

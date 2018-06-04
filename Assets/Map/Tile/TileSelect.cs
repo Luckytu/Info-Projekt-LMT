@@ -73,7 +73,6 @@ public class TileSelect : TileBase {
 
         if(tilePathFinder.getPreviousTile() != null && !tileOccupied)
         {
-            print("tileadded");
             markTileOnPath();
             addTileToPath();
         }
